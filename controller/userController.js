@@ -5,6 +5,7 @@ import jsonwebtoken from "jsonwebtoken";
 
 // Register a user
 export const register = async (req, res) => {
+    console.log("called")
     try {
         const { fullname, nickName, email, password, gender } = req.body;
 
@@ -66,7 +67,7 @@ export const login = async (req, res) => {
                 success: false
             });
         }
-
+// console.log("cleared check")
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({
@@ -84,7 +85,7 @@ export const login = async (req, res) => {
         }
 
         const tokenData = { userId: user._id };
-        const token = jsonwebtoken.sign(tokenData, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+        const token = jsonwebtoken.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
 
         return res.status(200).cookie("token", token, {
             maxAge: 24 * 60 * 60 * 1000, // 1 day
@@ -121,6 +122,7 @@ export const logout = (req, res) => {
 
 // Get other users excluding logged-in user
 export const getOtherUsers = async (req, res) => {
+    // console.log("called ji")
     try {
         const loggedInUserId = req.user.id;  // Assuming req.user is set after token verification
         const otherUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");

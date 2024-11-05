@@ -9,6 +9,7 @@ const conversationsSchema = new mongoose.Schema({
     messages:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Messege"
-    }]
+    }],
+  
 },{timestamps:true})
 export const Conversation = mongoose.model("Conversation",conversationsSchema);
