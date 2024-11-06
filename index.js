@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); // <-- Add this to parse cookies
 
 const corsOption = {
-    origin: ['http://localhost:5173',"https://3cnhfpsc-5173.inc1.devtunnels.ms"],
+    origin: "*",
     credentials: true,
 };
 app.use(cors(corsOption));

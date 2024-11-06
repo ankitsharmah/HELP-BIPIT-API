@@ -45,7 +45,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ['https://localhost:5173',"https://3cnhfpsc-5173.inc1.devtunnels.ms"],
+        origin: "*",
         methods: ['GET', 'POST'],
     },
 });
