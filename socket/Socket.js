@@ -45,7 +45,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:5173',"https://3cnhfpsc-5173.inc1.devtunnels.ms"],
+        origin: ['https://localhost:5173',"https://3cnhfpsc-5173.inc1.devtunnels.ms"],
         methods: ['GET', 'POST'],
     },
 });
@@ -66,22 +66,15 @@ io.on('connection', (socket) => {
         io.emit('getOnlineUsers', Object.keys(userSocketMap));
     }
 
-    // One-to-one chat handler
-    // socket.on('sendPrivateMessage', ({ receiverId, message }) => {
-    //     io.to(receiverId).emit('newPrivateMessage', { senderId: userId, message });
-    // });
-// Backend code (Socket.IO event handler)
-// socket.on('sendPrivateMessage', ({ receiverId, message, senderId }) => {
-//     io.to(receiverId).emit('newPrivateMessage', { senderId, message });
-// });
 
-    // Open chat handler
-    // socket.on('sendOpenForumMessage', (message) => {
-    //     console.log(message)
-    //     io.to('openForum').emit('openChatMessage', { senderId: userId, message });
-    // });
-
-    // Handle disconnection
+    socket.on('typing', ({ senderId, receiverId, typing }) => {
+        // console.log("typing user")
+        const receiverSocketId = userSocketMap[receiverId];
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit('typing', { senderId, typing });
+        }
+    });
+ 
     socket.on('disconnect', () => {
         delete userSocketMap[userId];
         io.emit('getOnlineUsers', Object.keys(userSocketMap));
