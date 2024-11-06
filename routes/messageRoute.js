@@ -1,6 +1,6 @@
 import express from "express";
 import { getChatForumMessages, getMessage, sendMessage, sendMessageToChatForum } from "../controller/messageController.js";
-import isAuthenticated from "../middleware/isAuthenticated.js";
+import isAuthenticated from "../middleWare/isAuthenticated.js";
 
 const router = express.Router();
 
