@@ -119,6 +119,33 @@ export const logout = (req, res) => {
         });
     }
 };
+// const jwt = require('jsonwebtoken');
+
+export const verifyToken =async (req, res) => {
+    console.log("verify token")
+    const authHeader = req.header("Authorization");
+    // console.log("header ",authHeader)
+    console.log(authHeader)
+    if (!authHeader) {
+        return res.status(401).json({
+            success: false,
+            message: "Authorization header missing"
+        });
+    }
+
+    // Extract token
+    const token = authHeader.replace("Bearer ", "").trim();
+    // console.log(token);
+  try {
+    const decoded = jsonwebtoken.verify(token, process.env.SECRET_KEY);
+    const gotUser = await User.findById(decoded.userId)
+    console.log(gotUser)
+    return res.status(200).json({ valid: true, user: gotUser });
+  } catch (error) {
+    return res.status(401).json({ valid: false });
+  }
+};
+
 
 // Get other users excluding logged-in user
 export const getOtherUsers = async (req, res) => {
