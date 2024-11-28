@@ -68,7 +68,9 @@ export const login = async (req, res) => {
             });
         }
 // console.log("cleared check")
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).populate({
+             path: "reports"
+        });
         if (!user) {
             return res.status(401).json({
                 message: "User not found",
@@ -163,6 +165,22 @@ export const getOtherUsers = async (req, res) => {
     }
 };
 
+export const userInfo= async (req, res) => {
+    console.log("called one")
+    const userId = req.user.userId;
+    console.log(userId)
+    const user = await User.findById(userId).populate(
+       { path:"reports"}
+    );
+    
+    if(!user){
+        return res.status(404).json({
+            message:"user not found",
+        });
+    }
+
+    return res.status(200).json(user)
+}
 
 // export const addFriend = (req,res)=>{
 

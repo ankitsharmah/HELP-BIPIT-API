@@ -81,6 +81,7 @@ import dotenv from 'dotenv';
 import connectDb from './config/database.js';
 import userRouter from './routes/userRoutes.js';
 import messageRoute from './routes/messageRoute.js';
+import lostAndfound from "./routes/lostAndfound.js"
 import cors from 'cors';
 import { createCanvas } from 'canvas';
 import { app, server } from './socket/Socket.js';
@@ -105,6 +106,7 @@ app.use(cors(corsOptions));
 // Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/messages', messageRoute);
+app.use('/api/v1/reports',lostAndfound );
 
 app.get('/', (req, res) => {
     console.log('called');

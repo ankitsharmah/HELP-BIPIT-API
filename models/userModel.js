@@ -26,10 +26,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         enum:['male','female']
     },
-    reports:{
+    reports:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Report"
-    },
+    }],
     friends:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"

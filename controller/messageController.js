@@ -118,7 +118,11 @@ export const getChatForumMessages = async (req, res) => {
         });
             // console.log(chatForum)
         if (!chatForum) {
-            return res.status(200).json({ message: "Chat forum not found" });
+            return res.status(200).json({ message: "Chat forum not found" ,
+                openChatmessages: {
+                    messages:[]
+                }
+            });
         }
 
         res.status(200).json({ openChatmessages: chatForum });

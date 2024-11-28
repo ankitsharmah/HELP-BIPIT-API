@@ -21,6 +21,10 @@ const itemSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    contact:{
+        type:String,
+        required:true
+    },
     reportStatus:{
         type:String,
         enum:["LOST","FOUND","RESOLVED"]

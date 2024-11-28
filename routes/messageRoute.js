@@ -7,7 +7,7 @@ const router = express.Router();
 router.route("/send/:id").post(isAuthenticated,sendMessage);
 router.post("/openform/send/:id",isAuthenticated,sendMessageToChatForum)
 // router.get("/",sendMessageToChatForum)
-router.get("/openform",isAuthenticated,getChatForumMessages)
+router.get("/openform",getChatForumMessages)
 router.route("/:id").get(isAuthenticated, getMessage);
 
 export default router;
