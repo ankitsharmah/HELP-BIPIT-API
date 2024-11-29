@@ -59,3 +59,29 @@ export const allReports = async(req, res) => {
             }
 }
 
+
+export const reportById=async (req,res)=>{
+        try {
+            const reportId= req.params.id;
+
+            const found = await Report.findById(reportId).populate({
+                path:"reportedBy"
+            });
+
+            if(!found){
+                return res.status(404).json({
+                    message:"not found item",
+                    success:false
+                })
+            }
+
+            return res.status(200).json({
+                report : found,
+                success: true
+            })
+
+            
+        } catch (error) {
+            console.log(error)
+        }
+}
