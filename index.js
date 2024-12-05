@@ -105,7 +105,7 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/v1/user', userRouter);
-app.use('/api/v1/messagess', messageRoute);
+app.use('/api/v1/messages', messageRoute);
 app.use('/api/v1/reports',lostAndfound );
 
 app.get('/', (req, res) => {
