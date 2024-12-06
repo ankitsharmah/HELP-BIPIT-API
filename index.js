@@ -108,9 +108,9 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/messages', messageRoute);
 app.use('/api/v1/reports',lostAndfound );
 
-app.get('/', (req, res) => {
+app.get('/', (req, ress) => {
     console.log('called');
-    return res.status(200).json({ message: 'ok ji ' });
+    return ress.status(200).json({ message: 'ok ji ' });
 });
 
 // Avatar generation route
