@@ -17,6 +17,7 @@ const isAuthenticated = async (req, res, next) => {
 
         // Extract token
         const token = authHeader.replace("Bearer ", "").trim();
+        
         // console.log("Token:", token);
         
         if (!token) {

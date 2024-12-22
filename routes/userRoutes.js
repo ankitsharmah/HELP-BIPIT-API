@@ -8,7 +8,7 @@ const router=express.Router();
 router.post("/register",register);
 router.post("/login",login);
 router.get("/verify",verifyToken);
-router.get("/user-i",isAuthenticated,userInfo);
+router.get("/user-id",userInfo);
 router.route("/").get(isAuthenticated,getOtherUsers);
 
 

@@ -13,7 +13,9 @@ export const report=async (req,res)=>{
             })
         }
         if(!itemType||!category ||!contact ||!location ||!specification||!foundOn ||!reportStatus){
-           
+           console.log(itemType,category,contact,location,specification,foundOn,reportStatus)
+           console.log(req.body)
+
                 return res.status(404).json({message: 'some missing value',
                     success: false
                 });
