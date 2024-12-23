@@ -110,7 +110,9 @@ app.use('/api/v1/reports',lostAndfound );
 
 app.get('/', (req, ress) => {
     console.log('called');
-    return ress.status(200).json({ message: 'ok ji ' });
+    return ress.status(200).json({ message: 'ok ji ',
+      success:true
+     });
 });
 
 // Avatar generation route
